@@ -37,11 +37,12 @@ const Popup: React.FC = () => {
             <p className='text-base text-slate-400'>Your Companion to Beat LeetCode!</p>
           </div>
           <div className="mt-10 flex flex-col gap-2">
+            <label htmlFor="text" className='text-white font-bold text-xl'>Enter Your OpenAI API key</label>
             <Input
               value={openAIKey}
               onChange={(e) => setOpenAIKey(e.target.value)}
               placeholder="OpenAI API Key"
-              className='text-xs focus:outline-none outline-none  border-[1px] border-slate-600'
+              className='text-xs text-white focus:outline-none outline-none  border-[1px] border-slate-600'
             />
             <Button onClick={handleAddOpenAPIKey} className="dark">
               Save
