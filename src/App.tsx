@@ -1,7 +1,8 @@
-import React from 'react';
 import leetCode from '@/assets/leetcode.png';
-import { Input } from './components/ui/input';
+import React from 'react';
+import Show from './components/Show';
 import { Button } from './components/ui/button';
+import { Input } from './components/ui/input';
 
 const Popup: React.FC = () => {
   const [openAIKey, setOpenAIKey] = React.useState('');
@@ -25,27 +26,39 @@ const Popup: React.FC = () => {
   };
 
   return (
-    <div className="bg-transparent dark relative w-[350px] h-[550px] bg-black p-4 text-white">
-      {isLoaded && (
-        <div>
-          <div className="w-full mt-10">
-            <img className="mx-auto" src={leetCode} width={150} height={150} />
+    <div className=" dark relative w-[350px] h-[350px] bg-[#121627] p-4  text-black">
+      <Show show={isLoaded}>
+        <div className=''>
+          <div className="w-full  h-20 overflow-hidden ">
+            <img className="mx-auto h-20 w-auto" src={leetCode} width={150} height={150} />
           </div>
           <div className="text-center">
-            <h1 className="text-white font-bold text-2xl">LeetCode Whisper</h1>
+            <h1 className=" font-bold text-3xl text-white">LeetCode <span className='text-whisperOrange'>Whisper</span></h1>
+            <p className='text-base text-slate-400'>Your Companion to Beat LeetCode!</p>
           </div>
           <div className="mt-10 flex flex-col gap-2">
             <Input
               value={openAIKey}
               onChange={(e) => setOpenAIKey(e.target.value)}
               placeholder="OpenAI API Key"
+              className='text-xs focus:outline-none outline-none  border-[1px] border-slate-600'
             />
             <Button onClick={handleAddOpenAPIKey} className="dark">
               Save
             </Button>
           </div>
+          <div className=" h-16 flex items-center justify-center">
+            <p
+              className='text-white text-[14px]'
+            >Want more features?&nbsp;
+              <a
+                href='https://github.com/piyushgarg-dev/leetcode-whisper-chrome-extension'
+                className='text-[#86ccee]'
+                target='_blank'
+              > Request a feature!</a></p>
+          </div>
         </div>
-      )}
+      </Show>
     </div>
   );
 };
