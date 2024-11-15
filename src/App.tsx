@@ -5,7 +5,7 @@ import { Button } from './components/ui/button';
 
 const Popup: React.FC = () => {
   const [openAIKey, setOpenAIKey] = React.useState('');
-  const [isLoaded, setIsLoaded] = React.useState(true);
+  const [isLoaded, setIsLoaded] = React.useState(false);
 
   React.useEffect(() => {
     (async function loadOpenAPIKey() {
