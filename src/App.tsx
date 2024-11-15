@@ -5,7 +5,7 @@ import { Button } from './components/ui/button';
 
 const Popup: React.FC = () => {
   const [openAIKey, setOpenAIKey] = React.useState('');
-  const [isLoaded, setIsLoaded] = React.useState(false);
+  const [isLoaded, setIsLoaded] = React.useState(true);
 
   React.useEffect(() => {
     (async function loadOpenAPIKey() {
@@ -25,7 +25,7 @@ const Popup: React.FC = () => {
   };
 
   return (
-    <div className="bg-transparent dark relative w-[350px] h-[550px] bg-black p-4 text-white">
+    <div className="dark relative w-[350px] h-[550px] bg-black text-white p-4">
       {isLoaded && (
         <div>
           <div className="w-full mt-10">
@@ -35,10 +35,12 @@ const Popup: React.FC = () => {
             <h1 className="text-white font-bold text-2xl">LeetCode Whisper</h1>
           </div>
           <div className="mt-10 flex flex-col gap-2">
+            <label htmlFor="text" className='text-white font-bold'>Enter Your OpenAI API key</label>
             <Input
               value={openAIKey}
               onChange={(e) => setOpenAIKey(e.target.value)}
-              placeholder="OpenAI API Key"
+              placeholder="Ex. 0aBbnGgzXXXXXX"
+              className='bg-white outline-none'
             />
             <Button onClick={handleAddOpenAPIKey} className="dark">
               Save
