@@ -23,7 +23,7 @@ function createOpenAISDK(apiKey: string) {
   return new OpenAI({
     apiKey,
     dangerouslyAllowBrowser: true,
-  });
+  })
 }
 
 interface ChatBoxProps {
@@ -49,16 +49,16 @@ function ChatBox({ context, visible }: ChatBoxProps) {
   const [value, setValue] = React.useState('');
   const [chatHistory, setChatHistory] = React.useState<ChatMessage[]>([]);
 
-  const chatBoxRef = useRef<HTMLDivElement>(null);
+  const chatBoxRef = useRef<HTMLDivElement>(null)
 
   const handleGenerateAIResponse = async () => {
     const openAIAPIKey = (await chrome.storage.local.get('apiKey')) as {
-      apiKey?: string;
-    };
+      apiKey?: string
+    }
 
-    if (!openAIAPIKey.apiKey) return alert('OpenAI API Key is required');
+    if (!openAIAPIKey.apiKey) return alert('OpenAI API Key is required')
 
-    const openai = createOpenAISDK(openAIAPIKey.apiKey);
+    const openai = createOpenAISDK(openAIAPIKey.apiKey)
 
     const userMessage = value;
     const userCurrentCodeContainer = document.querySelectorAll('.view-line');
@@ -91,14 +91,14 @@ function ChatBox({ context, visible }: ChatBoxProps) {
             ({
               role: chat.role,
               content: chat.message,
-            } as ChatCompletionMessageParam)
+            }) as ChatCompletionMessageParam
         ),
         {
           role: 'user',
           content: `User Prompt: ${userMessage}\n\nCode: ${extractedCode}`,
         },
       ],
-    });
+    })
 
     if (apiResponse.choices[0].message.content) {
       const result = JSON.parse(apiResponse.choices[0].message.content);
@@ -121,7 +121,7 @@ function ChatBox({ context, visible }: ChatBoxProps) {
         chatBoxRef.current?.scrollIntoView({ behavior: 'smooth' });
       }
     }
-  };
+  }
 
   const onSendMessage = () => {
     setChatHistory((prev) => [
@@ -227,11 +227,11 @@ function ChatBox({ context, visible }: ChatBoxProps) {
 }
 
 const ContentPage: React.FC = () => {
-  const [chatboxExpanded, setChatboxExpanded] = React.useState(false);
+  const [chatboxExpanded, setChatboxExpanded] = React.useState(false)
 
-  const metaDescriptionEl = document.querySelector('meta[name=description]');
+  const metaDescriptionEl = document.querySelector('meta[name=description]')
 
-  const problemStatement = metaDescriptionEl?.getAttribute('content') as string;
+  const problemStatement = metaDescriptionEl?.getAttribute('content') as string
 
   return (
     <div className="__chat-container dark z-50">
@@ -243,7 +243,7 @@ const ContentPage: React.FC = () => {
         </Button>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default ContentPage;
+export default ContentPage

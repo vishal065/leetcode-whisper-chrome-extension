@@ -4,5 +4,5 @@ export function extractCode(htmlContent: NodeListOf<Element>) {
     .map((line) => line.textContent || '') // Ensure textContent is not null
     .join('\n');
 
-  return code;
+  return code
 }
