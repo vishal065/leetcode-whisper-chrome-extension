@@ -13,7 +13,8 @@ const Popup: React.FC = () => {
       const apiKeyFromStorage = (await chrome.storage.local.get('apiKey')) as {
         apiKey?: string;
       };
-      if (apiKeyFromStorage.apiKey) setOpenAIKey(apiKeyFromStorage.apiKey);
+      if (apiKeyFromStorage.apiKey)
+        setOpenAIKey(`${apiKeyFromStorage.apiKey.substring(0, 12)}-XXXXXX`);
       setIsLoaded(true);
     })();
   }, []);
@@ -35,12 +36,14 @@ const Popup: React.FC = () => {
             <h1 className="text-white font-bold text-2xl">LeetCode Whisper</h1>
           </div>
           <div className="mt-10 flex flex-col gap-2">
-            <label htmlFor="text" className='text-white font-bold text-xl'>Enter Your OpenAI API key</label>
+            <label htmlFor="text" className="text-white font-bold text-xl">
+              Enter Your OpenAI API key
+            </label>
             <Input
               value={openAIKey}
               onChange={(e) => setOpenAIKey(e.target.value)}
               placeholder="Ex. 0aBbnGgzXXXXXX"
-              className='bg-white outline-none'
+              className="bg-white text-black outline-none"
             />
             <Button onClick={handleAddOpenAPIKey} className="dark">
               Save
